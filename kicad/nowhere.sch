@@ -1,4 +1,5 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 5
+LIBS:nowhere-cache
 EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
@@ -485,19 +486,6 @@ Wire Wire Line
 	8600 2150 8600 2200
 Text GLabel 8600 2150 0    50   Input ~ 0
 data0_out
-Wire Wire Line
-	8350 2500 8400 2500
-$Comp
-L power:+12V #PWR0101
-U 1 1 5CF82FC3
-P 8350 2500
-F 0 "#PWR0101" H 8350 2350 50  0001 C CNN
-F 1 "+12V" H 8365 2673 50  0000 C CNN
-F 2 "" H 8350 2500 50  0001 C CNN
-F 3 "" H 8350 2500 50  0001 C CNN
-	1    8350 2500
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR0102
 U 1 1 5CF823A7
@@ -525,19 +513,6 @@ Wire Wire Line
 	8600 3050 8600 3100
 Text GLabel 8600 3050 0    50   Input ~ 0
 data1_out
-Wire Wire Line
-	8350 3400 8400 3400
-$Comp
-L power:+12V #PWR0103
-U 1 1 5CFB6602
-P 8350 3400
-F 0 "#PWR0103" H 8350 3250 50  0001 C CNN
-F 1 "+12V" H 8365 3573 50  0000 C CNN
-F 2 "" H 8350 3400 50  0001 C CNN
-F 3 "" H 8350 3400 50  0001 C CNN
-	1    8350 3400
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR0104
 U 1 1 5CFB660C
@@ -565,19 +540,6 @@ Wire Wire Line
 	8600 3950 8600 4000
 Text GLabel 8600 3950 0    50   Input ~ 0
 data2_out
-Wire Wire Line
-	8350 4300 8400 4300
-$Comp
-L power:+12V #PWR0105
-U 1 1 5CFB9FA8
-P 8350 4300
-F 0 "#PWR0105" H 8350 4150 50  0001 C CNN
-F 1 "+12V" H 8365 4473 50  0000 C CNN
-F 2 "" H 8350 4300 50  0001 C CNN
-F 3 "" H 8350 4300 50  0001 C CNN
-	1    8350 4300
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR0106
 U 1 1 5CFB9FB2
@@ -605,19 +567,6 @@ Wire Wire Line
 	8600 4850 8600 4900
 Text GLabel 8600 4850 0    50   Input ~ 0
 data3_out
-Wire Wire Line
-	8350 5200 8400 5200
-$Comp
-L power:+12V #PWR0107
-U 1 1 5CFB9FCA
-P 8350 5200
-F 0 "#PWR0107" H 8350 5050 50  0001 C CNN
-F 1 "+12V" H 8365 5373 50  0000 C CNN
-F 2 "" H 8350 5200 50  0001 C CNN
-F 3 "" H 8350 5200 50  0001 C CNN
-	1    8350 5200
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR0108
 U 1 1 5CFB9FD4
@@ -645,19 +594,6 @@ Wire Wire Line
 	9650 2150 9650 2200
 Text GLabel 9650 2150 0    50   Input ~ 0
 data4_out
-Wire Wire Line
-	9400 2500 9450 2500
-$Comp
-L power:+12V #PWR0109
-U 1 1 5CFBF910
-P 9400 2500
-F 0 "#PWR0109" H 9400 2350 50  0001 C CNN
-F 1 "+12V" H 9415 2673 50  0000 C CNN
-F 2 "" H 9400 2500 50  0001 C CNN
-F 3 "" H 9400 2500 50  0001 C CNN
-	1    9400 2500
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR0110
 U 1 1 5CFBF91A
@@ -685,19 +621,6 @@ Wire Wire Line
 	9650 3050 9650 3100
 Text GLabel 9650 3050 0    50   Input ~ 0
 data5_out
-Wire Wire Line
-	9400 3400 9450 3400
-$Comp
-L power:+12V #PWR0111
-U 1 1 5CFBF932
-P 9400 3400
-F 0 "#PWR0111" H 9400 3250 50  0001 C CNN
-F 1 "+12V" H 9415 3573 50  0000 C CNN
-F 2 "" H 9400 3400 50  0001 C CNN
-F 3 "" H 9400 3400 50  0001 C CNN
-	1    9400 3400
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR0112
 U 1 1 5CFBF93C
@@ -725,19 +648,6 @@ Wire Wire Line
 	9650 3950 9650 4000
 Text GLabel 9650 3950 0    50   Input ~ 0
 data6_out
-Wire Wire Line
-	9400 4300 9450 4300
-$Comp
-L power:+12V #PWR0113
-U 1 1 5CFBF954
-P 9400 4300
-F 0 "#PWR0113" H 9400 4150 50  0001 C CNN
-F 1 "+12V" H 9415 4473 50  0000 C CNN
-F 2 "" H 9400 4300 50  0001 C CNN
-F 3 "" H 9400 4300 50  0001 C CNN
-	1    9400 4300
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR0114
 U 1 1 5CFBF95E
@@ -765,19 +675,6 @@ Wire Wire Line
 	9650 4850 9650 4900
 Text GLabel 9650 4850 0    50   Input ~ 0
 data7_out
-Wire Wire Line
-	9400 5200 9450 5200
-$Comp
-L power:+12V #PWR0115
-U 1 1 5CFBF976
-P 9400 5200
-F 0 "#PWR0115" H 9400 5050 50  0001 C CNN
-F 1 "+12V" H 9415 5373 50  0000 C CNN
-F 2 "" H 9400 5200 50  0001 C CNN
-F 3 "" H 9400 5200 50  0001 C CNN
-	1    9400 5200
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR0116
 U 1 1 5CFBF980
@@ -802,7 +699,7 @@ F 3 "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf" H 9750 5200 50  0001
 $EndComp
 NoConn ~ 9850 4900
 $Comp
-L teensy:Teensy3.6 U1
+L nowhere-rescue:Teensy3.6-teensy U1
 U 1 1 5CEE8512
 P 2850 3800
 F 0 "U1" H 2850 6187 60  0000 C CNN
@@ -845,4 +742,12 @@ F 3 "" H 9350 1300 50  0001 C CNN
 	1    9350 1300
 	1    0    0    -1  
 $EndComp
+NoConn ~ 9450 2500
+NoConn ~ 8400 2500
+NoConn ~ 9450 3400
+NoConn ~ 8400 3400
+NoConn ~ 8400 4300
+NoConn ~ 9450 4300
+NoConn ~ 9450 5200
+NoConn ~ 8400 5200
 $EndSCHEMATC

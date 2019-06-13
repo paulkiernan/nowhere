@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name teensy)(type Legacy)(uri /Users/paulynomial/Dropbox/workspace/nowhere/kicad/teensy_library-master/teensy.lib)(options "")(descr ""))
+  (lib (name nowhere-rescue)(type Legacy)(uri ${KIPRJMOD}/nowhere-rescue.lib)(options "")(descr ""))
 )
