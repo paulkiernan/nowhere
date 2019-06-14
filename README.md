@@ -15,3 +15,9 @@ We use Docker to standardize our build environment. This minimizes uncertainty
 around cross-complilation by giving us identical base environments and also
 keeps out host environments clean. Currently (2019-06-13) we build for the
 Ubuntu Bionic (LTS) target via the DockerFile in the root of this repo.
+
+```bash
+./develop
+make
+make upload
+```
