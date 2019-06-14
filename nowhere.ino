@@ -12,7 +12,7 @@
 #define LED_STRIP2_PIN  7
 #define LED_STRIP3_PIN  8
 #define LED_STRIP4_PIN  6
-#define LED_STRIP5_PIN  29
+#define LED_STRIP5_PIN  20
 #define LED_STRIP6_PIN  21
 #define LED_STRIP7_PIN  5
 
