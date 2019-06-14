@@ -1,9 +1,13 @@
 FROM ubuntu:bionic
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN useradd -ms /bin/bash nowhere
+ARG USER_ID
+ARG GROUP_ID
+
+RUN groupadd -g ${GROUP_ID} nowhere && \
+    useradd -l -u ${USER_ID} -g nowhere nowhere
+
 ENV HOME /home/nowhere
-WORKDIR /home/nowhere
 
 # Install base packages
 RUN apt-get update && apt-get -y dist-upgrade
@@ -29,14 +33,12 @@ RUN curl -L https://downloads.arduino.cc/arduino-${ARDUINO_IDE_VERSION}-linux64.
           /usr/bin/arduino
 
 # Install Teensyduino on top of Arduino
+# NOTE: Make sure to install udev.rules on linux
 WORKDIR /scratch
 RUN curl -L -O https://www.pjrc.com/teensy/td_146/TeensyduinoInstall.linux64 && \
     chmod +x TeensyduinoInstall.linux64 && \
     ./TeensyduinoInstall.linux64 --dir=/usr/share/arduino && \
     rm -rf /scratch
-
-# Install Teensyduino udev rules
-RUN curl -L https://www.pjrc.com/teensy/49-teensy.rules > /etc/udev/rules.d/49-teensy.rules
 
 USER nowhere
 WORKDIR /nowhere
