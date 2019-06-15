@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eu
 
+IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+xhost + $IP
+
 image_name="ubuntu-bionic-nowhere"
 docker build \
     --build-arg USER_ID=$(id -u ${USER}) \
@@ -9,7 +12,7 @@ docker build \
 docker run \
     -it \
     --privileged \
-    -e DISPLAY=$DISPLAY \
+    -e DISPLAY=$IP:0 \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v /dev:/dev \
     -v "$(pwd):/nowhere" \

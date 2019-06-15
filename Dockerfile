@@ -8,7 +8,7 @@ RUN if [ "`getent group $GID`" ]; then \
         groupdel dialout; \
     fi && \
     groupadd -g ${GROUP_ID} nowhere; \
-    useradd -l -u ${USER_ID} -g nowhere nowhere
+    useradd -m -l -u ${USER_ID} -g nowhere nowhere
 
 ENV HOME /home/nowhere
 
