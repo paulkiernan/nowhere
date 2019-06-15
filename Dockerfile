@@ -4,7 +4,10 @@ ENV DEBIAN_FRONTEND noninteractive
 ARG USER_ID
 ARG GROUP_ID
 
-RUN groupadd -g ${GROUP_ID} nowhere && \
+RUN if [ "`getent group $GID`" ]; then \
+        groupdel dialout; \
+    fi && \
+    groupadd -g ${GROUP_ID} nowhere; \
     useradd -l -u ${USER_ID} -g nowhere nowhere
 
 ENV HOME /home/nowhere
@@ -33,7 +36,7 @@ RUN curl -L https://downloads.arduino.cc/arduino-${ARDUINO_IDE_VERSION}-linux64.
           /usr/bin/arduino
 
 # Install Teensyduino on top of Arduino
-# NOTE: Make sure to install udev.rules on linux
+# NOTE: Make sure to install udev.rules on linux host
 WORKDIR /scratch
 RUN curl -L -O https://www.pjrc.com/teensy/td_146/TeensyduinoInstall.linux64 && \
     chmod +x TeensyduinoInstall.linux64 && \
