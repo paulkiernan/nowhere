@@ -1,91 +1,76 @@
 #include <OctoWS2811.h>
+#include "logging.h"
+
+#define RED    0xFF0000
+#define GREEN  0x00FF00
+#define BLUE   0x0000FF
+#define YELLOW 0xFFFF00
+#define PINK   0xFF1088
+#define ORANGE 0xE05800
+#define WHITE  0xFFFFFF
 
 const int ledsPerStrip = 300;
 int drawingMemory[ledsPerStrip*6];
 DMAMEM int displayMemory[ledsPerStrip*6];
 OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory, WS2811_GRB | WS2811_800kHz);
 
-int rainbowColors[180];
 
-// phaseShift is the shift between each row.  phaseShift=0
-// causes all rows to show the same colors moving together.
-// phaseShift=180 causes each row to be the opposite colors
-// as the previous.
-//
-// cycleTime is the number of milliseconds to shift through
-// the entire 360 degrees of the color wheel:
-// Red -> Orange -> Yellow -> Green -> Blue -> Violet -> Red
-//
-void rainbow(int phaseShift, int cycleTime)
+void flicker(int start_index, int end_index)
 {
-  int color, x, y, wait;
+    int original_colour = leds.getPixel(start_index);
+    int number_flickers = random(1, 5);
 
-  wait = cycleTime * 1000 / ledsPerStrip;
-  for (color=0; color < 180; color++) {
-    digitalWrite(1, HIGH);
-    for (x=0; x < ledsPerStrip; x++) {
-      for (y=0; y < 8; y++) {
-        int index = (color + x + y*phaseShift/2) % 180;
-        leds.setPixel(x + y*ledsPerStrip, rainbowColors[index]);
-      }
-    }
-    leds.show();
-    digitalWrite(1, LOW);
-    delayMicroseconds(wait);
-  }
-}
+    for (int i=0; i < number_flickers; i++) {
 
-
-unsigned int h2rgb(unsigned int v1, unsigned int v2, unsigned int hue)
-{
-    if (hue < 60) return v1 * 60 + (v2 - v1) * hue;
-    if (hue < 180) return v2 * 60;
-    if (hue < 240) return v1 * 60 + (v2 - v1) * (240 - hue);
-    return v1 * 60;
-}
-
-
-int makeColor(unsigned int hue, unsigned int saturation, unsigned int lightness)
-{
-    unsigned int red, green, blue;
-    unsigned int var1, var2;
-
-    if (hue > 359) hue = hue % 360;
-    if (saturation > 100) saturation = 100;
-    if (lightness > 100) lightness = 100;
-
-    // algorithm from: http://www.easyrgb.com/index.php?X=MATH&H=19#text19
-    if (saturation == 0) {
-        red = green = blue = lightness * 255 / 100;
-    } else {
-        if (lightness < 50) {
-            var2 = lightness * (100 + saturation);
-        } else {
-            var2 = ((lightness + saturation) * 100) - (saturation * lightness);
+        // Turn off
+        for (int j=start_index; j < end_index; j++) {
+            leds.setPixel(j, 0x000000);
         }
-        var1 = lightness * 200 - var2;
-        red = h2rgb(var1, var2, (hue < 240) ? hue + 120 : hue - 240) * 255 / 600000;
-        green = h2rgb(var1, var2, hue) * 255 / 600000;
-        blue = h2rgb(var1, var2, (hue >= 120) ? hue - 120 : hue + 240) * 255 / 600000;
+        leds.show();
+        int delay_ms = random(50, 100);
+        delay(delay_ms);
+
+        // Turn back on
+        for (int j=start_index; j < end_index; j++) {
+            leds.setPixel(j, original_colour);
+        }
+        leds.show();
     }
-    return (red << 16) | (green << 8) | blue;
-}
-
-void setup() {
-  pinMode(1, OUTPUT);
-  digitalWrite(1, HIGH);
-  for (int i=0; i<180; i++) {
-    int hue = i * 2;
-    int saturation = 100;
-    int lightness = 50;
-    // pre-compute the 180 rainbow colors
-    rainbowColors[i] = makeColor(hue, saturation, lightness);
-  }
-  digitalWrite(1, LOW);
-  leds.begin();
 }
 
 
-void loop() {
-  rainbow(10, 6000);
+void setup()
+{
+
+    delay(1000);
+    Logging::Init();
+
+    leds.begin();
+
+    for (int i=0; i < 150; i++) {
+        leds.setPixel(i, RED);
+    }
+
+    for (int i=150; i < 300; i++) {
+        leds.setPixel(i, GREEN);
+    }
+
+    leds.show();
+
+    randomSeed(analogRead(0));
+}
+
+void loop()
+{
+    Logging::log("meow");
+    long random_100 = random(100);
+    if(random_100 <= 20){
+        long red_or_green = random(0, 2);
+        if(red_or_green == 0){
+            flicker(0, 150);
+        } else {
+            flicker(150, 300);
+        }
+    }
+    delay(1000);
 }
