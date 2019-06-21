@@ -5,4 +5,4 @@ ARDMK_DIR = .
 
 BOARD_TAG = teensy36
 
-include $(ARDMK_DIR)/Teensy.mk
+include $(ARDMK_DIR)/makefiles/Teensy.mk

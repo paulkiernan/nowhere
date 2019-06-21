@@ -133,4 +133,4 @@ RESET_CMD = nohup $(ARDUINO_DIR)/hardware/tools/teensy_post_compile -board=$(BOA
 ########################################################################
 # automatially include Arduino.mk for the user
 
-include $(ARDMK_DIR)/Arduino.mk
+include $(ARDMK_DIR)/makefiles/Arduino.mk
